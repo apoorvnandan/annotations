@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>annotations</title>
+    <style>
+        pre[class*="language-"],
+        code[class*="language-"] {
+            color: #d4d4d4;
+            font-size: 13px;
+            text-shadow: none;
+            font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono", "Courier New", monospace;
+            direction: ltr;
+            text-align: left;
+            white-space: pre;
+            word-spacing: normal;
+            word-break: normal;
+            line-height: 1.5;
+            -moz-tab-size: 4;
+            -o-tab-size: 4;
+            tab-size: 4;
+            -webkit-hyphens: none;
+            -moz-hyphens: none;
+            -ms-hyphens: none;
+            hyphens: none;
+        }
+
+        pre[class*="language-"]::selection,
+        code[class*="language-"]::selection,
+        pre[class*="language-"] *::selection,
+        code[class*="language-"] *::selection {
+            text-shadow: none;
+            background: #264F78;
+        }
+
+        @media print {
+
+            pre[class*="language-"],
+            code[class*="language-"] {
+                text-shadow: none;
+            }
+        }
+
+        pre[class*="language-"] {
+            padding: 1em;
+            margin: .5em 0;
+            overflow: auto;
+            background: #1e1e1e;
+        }
+
+        :not(pre)>code[class*="language-"] {
+            padding: .1em .3em;
+            border-radius: .3em;
+            color: #db4c69;
+            background: #1e1e1e;
+        }
+
+        /*********************************************************
+* Tokens
+*/
+        .namespace {
+            opacity: .7;
+        }
+
+        .token.doctype .token.doctype-tag {
+            color: #569CD6;
+        }
+
+        .token.doctype .token.name {
+            color: #9cdcfe;
+        }
+
+        .token.comment,
+        .token.prolog {
+            color: #6a9955;
+        }
+
+        .token.punctuation,
+        .language-html .language-css .token.punctuation,
+        .language-html .language-javascript .token.punctuation {
+            color: #d4d4d4;
+        }
+
+        .token.property,
+        .token.tag,
+        .token.boolean,
+        .token.number,
+        .token.constant,
+        .token.symbol,
+        .token.inserted,
+        .token.unit {
+            color: #b5cea8;
+        }
+
+        .token.selector,
+        .token.attr-name,
+        .token.string,
+        .token.char,
+        .token.builtin,
+        .token.deleted {
+            color: #ce9178;
+        }
+
+        .language-css .token.string.url {
+            text-decoration: underline;
+        }
+
+        .token.operator,
+        .token.entity {
+            color: #d4d4d4;
+        }
+
+        .token.operator.arrow {
+            color: #569CD6;
+        }
+
+        .token.atrule {
+            color: #ce9178;
+        }
+
+        .token.atrule .token.rule {
+            color: #c586c0;
+        }
+
+        .token.atrule .token.url {
+            color: #9cdcfe;
+        }
+
+        .token.atrule .token.url .token.function {
+            color: #dcdcaa;
+        }
+
+        .token.atrule .token.url .token.punctuation {
+            color: #d4d4d4;
+        }
+
+        .token.keyword {
+            color: #569CD6;
+        }
+
+        .token.keyword.module,
+        .token.keyword.control-flow {
+            color: #c586c0;
+        }
+
+        .token.function,
+        .token.function .token.maybe-class-name {
+            color: #dcdcaa;
+        }
+
+        .token.regex {
+            color: #d16969;
+        }
+
+        .token.important {
+            color: #569cd6;
+        }
+
+        .token.italic {
+            font-style: italic;
+        }
+
+        .token.constant {
+            color: #9cdcfe;
+        }
+
+        .token.class-name,
+        .token.maybe-class-name {
+            color: #4ec9b0;
+        }
+
+        .token.console {
+            color: #9cdcfe;
+        }
+
+        .token.parameter {
+            color: #9cdcfe;
+        }
+
+        .token.interpolation {
+            color: #9cdcfe;
+        }
+
+        .token.punctuation.interpolation-punctuation {
+            color: #569cd6;
+        }
+
+        .token.boolean {
+            color: #569cd6;
+        }
+
+        .token.property,
+        .token.variable,
+        .token.imports .token.maybe-class-name,
+        .token.exports .token.maybe-class-name {
+            color: #9cdcfe;
+        }
+
+        .token.selector {
+            color: #d7ba7d;
+        }
+
+        .token.escape {
+            color: #d7ba7d;
+        }
+
+        .token.tag {
+            color: #569cd6;
+        }
+
+        .token.tag .token.punctuation {
+            color: #808080;
+        }
+
+        .token.cdata {
+            color: #808080;
+        }
+
+        .token.attr-name {
+            color: #9cdcfe;
+        }
+
+        .token.attr-value,
+        .token.attr-value .token.punctuation {
+            color: #ce9178;
+        }
+
+        .token.attr-value .token.punctuation.attr-equals {
+            color: #d4d4d4;
+        }
+
+        .token.entity {
+            color: #569cd6;
+        }
+
+        .token.namespace {
+            color: #4ec9b0;
+        }
+
+        /*********************************************************
+* Language Specific
+*/
+
+        pre[class*="language-javascript"],
+        code[class*="language-javascript"],
+        pre[class*="language-jsx"],
+        code[class*="language-jsx"],
+        pre[class*="language-typescript"],
+        code[class*="language-typescript"],
+        pre[class*="language-tsx"],
+        code[class*="language-tsx"] {
+            color: #9cdcfe;
+        }
+
+        pre[class*="language-css"],
+        code[class*="language-css"] {
+            color: #ce9178;
+        }
+
+        pre[class*="language-html"],
+        code[class*="language-html"] {
+            color: #d4d4d4;
+        }
+
+        .language-regex .token.anchor {
+            color: #dcdcaa;
+        }
+
+        .language-html .token.punctuation {
+            color: #808080;
+        }
+
+        /*********************************************************
+* Line highlighting
+*/
+        pre[class*="language-"]>code[class*="language-"] {
+            position: relative;
+            z-index: 1;
+        }
+
+        .line-highlight.line-highlight {
+            background: #f7ebc6;
+            box-shadow: inset 5px 0 0 #f7d87c;
+            z-index: 0;
+        }
+
+
+
+
+
+
+
+
+
+
+        :root {
+            --border-color: #2a3642;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+
+        }
+
+        pre {
+            background-color: #f5f2f0;
+            padding: 0;
+            margin: 0;
+        }
+
+        .row {
+            width: 100%;
+            display: flex;
+        }
+
+        .row:hover * {
+            background-color: #000;
+        }
+
+        .doc {
+            background: #2a2a2a;
+            color: #d4d4d4;
+            font-family: sans-serif;
+            width: 40%;
+            flex-grow: 0;
+            flex-shrink: 0;
+            border: 1px solid var(--border-color);
+            border-top-width: 0px;
+        }
+
+        .code {
+            background-color: #1e1e1e;
+            width: 60%;
+            flex-grow: 0;
+            flex-shrink: 0;
+            border: 1px solid var(--border-color);
+            border-left-width: 0px;
+            border-top-width: 0px;
+        }
+
+        .content {
+            margin-top: 8px;
+            margin-bottom: 8px;
+            padding: 32px;
+        }
+
+        .doc p code {
+            background: #1e1e1e;
+            padding: 2px;
+            padding-left: 4px;
+            padding-right: 4px;
+            color: white;
+        }
+    </style>
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" /> -->
+
+
+</head>
+
+<body>
+    <div class="row">
+        <div class="doc">
+            <div class="content">
+            </div>
+        </div>
+        <div class="code">
+            <pre><code class="language-cpp">  
+            </code></pre>
+        </div>
+    </div>
+    <div class="row">
+        <div class="doc">
+            <div class="content">
+            </div>
+        </div>
+        <div class="code">
+            <pre><code class="language-cpp">  
+            </code></pre>
+        </div>
+    </div>
+    <div class="row">
+        <div class="doc">
+            <div class="content">
+            </div>
+        </div>
+        <div class="code">
+            <pre><code class="language-cpp">  
+            </code></pre>
+        </div>
+    </div>
+    <div class="row">
+        <div class="doc">
+            <div class="content">
+            </div>
+        </div>
+        <div class="code">
+            <pre><code class="language-cpp">  
+            </code></pre>
+        </div>
+    </div>
+    <div class="row">
+        <div class="doc">
+            <div class="content">
+            </div>
+        </div>
+        <div class="code">
+            <pre><code class="language-cpp">  
+            </code></pre>
+        </div>
+    </div>
+    <div class="row">
+        <div class="doc">
+            <div class="content">
+            </div>
+        </div>
+        <div class="code">
+            <pre><code class="language-cpp">  
+            </code></pre>
+        </div>
+    </div>
+    <div class="row">
+        <div class="doc">
+            <div class="content">
+            </div>
+        </div>
+        <div class="code">
+            <pre><code class="language-cpp">  
+            </code></pre>
+        </div>
+    </div>
+    <div class="row">
+        <div class="doc">
+            <div class="content">
+            </div>
+        </div>
+        <div class="code">
+            <pre><code class="language-cpp">  
+            </code></pre>
+        </div>
+    </div>
+    <div class="row">
+        <div class="doc">
+            <div class="content">
+            </div>
+        </div>
+        <div class="code">
+            <pre><code class="language-cpp">  
+            </code></pre>
+        </div>
+    </div>
+    <div class="row">
+        <div class="doc">
+            <div class="content">
+            </div>
+        </div>
+        <div class="code">
+            <pre><code class="language-cpp">  
+            </code></pre>
+        </div>
+    </div>
+    <div class="row">
+        <div class="doc">
+            <div class="content">
+            </div>
+        </div>
+        <div class="code">
+            <pre><code class="language-cpp">  
+            </code></pre>
+        </div>
+    </div>
+    <div class="row">
+        <div class="doc">
+            <div class="content">
+            </div>
+        </div>
+        <div class="code">
+            <pre><code class="language-cpp">  
+            </code></pre>
+        </div>
+    </div>
+    <div class="row">
+        <div class="doc">
+            <div class="content">
+            </div>
+        </div>
+        <div class="code">
+            <pre><code class="language-cpp">  
+            </code></pre>
+        </div>
+    </div>
+    <div class="row">
+        <div class="doc">
+            <div class="content">
+            </div>
+        </div>
+        <div class="code">
+            <pre><code class="language-cpp">  
+            </code></pre>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+
+
+        let codes = [
+            "void matmul(Arr* c, Arr* a, Arr* b) {",
+            '    int P = a->shape[0];\n' +
+            '    int Q = a->shape[1];\n' +
+            '    int R = b->shape[1];',
+            '    for (int i = 0; i < P; i++) {\n' +
+            '        for (int j = 0; j < R; j++) {',
+            '            float tmp = 0.0f;',
+            '            for (int k = 0; k < Q; k++) {',
+            '                int pos_a = i * a->strides[0] + k * a->strides[1];\n' +
+            '                int pos_b = k * b->strides[0] + j * b->strides[1];\n' +
+            '                tmp += a->data[pos_a] * b->data[pos_b];',
+            '            }',
+            '            int pos_c = i * c->strides[0] + j * c->strides[1];\n' +
+            '            c->data[pos_c] = tmp;',
+            '        }\n    }\n}',
+            'void matmul_backward(Arr* da, Arr* db, Arr* dc, Arr* a, Arr* b) {',
+            '    int P = a->shape[0];\n    int Q = a->shape[1];\n    int R = b->shape[1];',
+            '    if (da != NULL) {'
+
+        ];
+        let docs = [
+            "This function will do matrix multiplication with `a` and `b` and store the results in `c`",
+            "`a` is of shape `(P,Q)`, `b` is of shape `(Q,R)`, c will be of shape `(P,R)`",
+            'Iterate over each index `(i,j)` of the result array `c`',
+            '`tmp` will hold the value that will be stored at `c` at index `(i,j)`',
+            'Iterate over the common dimension of size `Q`',
+            'Multiply the values from `a` at (`i,k)` and `b` at `(k,j)`. Values are calculated using strides.',
+            '',
+            'Store the sum in `c` at position `(i,j)`',
+            '',
+            'This function calculates tha gradient arrays `da` and `db` for the inputs of the matmul operation `a` and `b`. `dc` is the gradient of the output array `c`.',
+            '`P`, `Q` and `R` are defined just like the `matmul` function.',
+            '`da` is optional. Sometimes, we do not need to calculate the gradients of one of `a` and `b` e.g. `a` is the array from the input tensor.',
+
+        ];
+
+        let rows = document.getElementsByClassName('row')
+        for (var i = 0; i < rows.length; i++) {
+            let row = rows[i];
+            row.children[0].children[0].innerHTML = marked.parse(docs[i]);
+            row.children[1].children[0].children[0].innerHTML = codes[i];
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+
+</body>
+
+</html>
